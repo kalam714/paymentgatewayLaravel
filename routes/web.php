@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\paymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,12 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+
+
+//amarpay
+
+Route::get('/payment',[paymentController::class,'index']);
+
+Route::post('/success',[paymentController::class,'success'])->name('success');
+
+Route::post('/fail',[paymentController::class,'fail'])->name('fail');
