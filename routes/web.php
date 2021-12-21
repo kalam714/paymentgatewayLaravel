@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\PayPalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,12 +37,19 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 //amarpay
 
-Route::get('/payment',[paymentController::class,'index']);
+// Route::get('/payment',[paymentController::class,'index']);
 
-Route::post('/success',[paymentController::class,'success'])->name('success');
+// Route::post('/success',[paymentController::class,'success'])->name('success');
 
-Route::post('/fail',[paymentController::class,'fail'])->name('fail');
+// Route::post('/fail',[paymentController::class,'fail'])->name('fail');
 
 //stripe
 Route::get('stripe', [StripePaymentController::class, 'stripe']);
 Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
+
+///paypal
+
+Route::get('create-transaction', [PayPalController::class, 'createTransaction'])->name('createTransaction');
+Route::get('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
+Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
+Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
